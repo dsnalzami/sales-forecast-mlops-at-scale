@@ -3,7 +3,7 @@ version: '3.8'
 services:
 
     kafka:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: kafka
         image: bitnami/kafka:latest
         ports:
@@ -27,7 +27,7 @@ services:
             retries: 10
 
     kafka-ui:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: kafka-ui
         image: provectuslabs/kafka-ui:latest
         ports:
@@ -43,7 +43,7 @@ services:
 
     # mockup api data producer
     data-producer:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: data-producer
         image: ariya23156/sfmlops-data-producer:latest
         build:
@@ -66,7 +66,7 @@ services:
 
     # sales forecasst service
     forecast-service:
-        platform: linux/arm64
+        platform: linux/amd64
         image: ariya23156/sfmlops-forecast-service:latest
         container_name: forecast-service
         build:
@@ -85,7 +85,7 @@ services:
 
     # Web UI interface
     web-ui:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: web-ui
         image: ariya23156/sfmlops-web-ui:latest
         build:
@@ -107,7 +107,7 @@ services:
 
     # service for triggering training/retraining
     training-service:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: training-service
         image: ariya23156/sfmlops-training-service:latest
         build:
@@ -129,9 +129,9 @@ services:
             - ./services/training-service/app/:/service/app/
 
     ray:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: ray-head
-        image: ariya23156/sfmlops-ray:latest-arm64
+        image: ariya23156/sfmlops-ray:latest-amd64
         build:
             context: ./services/ray
             dockerfile: Dockerfile
@@ -165,7 +165,7 @@ services:
             - mlflow-data:${MLFLOW_ARTIFACT_ROOT}
 
     nginx:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: nginx
         # restart: always
         build:
@@ -184,7 +184,7 @@ services:
 
     # ML platform / experiment tracking
     mlflow:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: mlflow-server
         image: ariya23156/sfmlops-mlflow:latest
         # restart: always
@@ -210,7 +210,7 @@ services:
 
     # sql database
     postgres:
-        platform: linux/arm64
+        platform: linux/amd64
         container_name: postgres-server
         image: postgres:15.3
         # restart: always
@@ -231,7 +231,7 @@ services:
 
     # ui for database
     pgadmin:
-        platform: linux/arm64
+        platform: linux/amd64
         image: dpage/pgadmin4
         # restart: always
         environment:
@@ -249,7 +249,7 @@ services:
 
     # overall monitoring & dashboards
     grafana:
-        platform: linux/arm64
+        platform: linux/amd64
         image: grafana/grafana-oss:latest
         container_name: grafana
         restart: unless-stopped
@@ -268,7 +268,7 @@ services:
 
     # time-series database
     prometheus:
-        platform: linux/arm64
+        platform: linux/amd64
         image: prom/prometheus:latest
         container_name: prometheus
         restart: unless-stopped
@@ -283,7 +283,7 @@ services:
 
     # host machine's metrics exporter for prometheus
     node-exporter:
-        platform: linux/arm64
+        platform: linux/amd64
         image: quay.io/prometheus/node-exporter:v1.5.0
         container_name: node-exporter
         restart: unless-stopped
